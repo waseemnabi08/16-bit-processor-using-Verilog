@@ -1,0 +1,22 @@
+{D:/Computer Orginization/CO Lab Reports/Final Project/Decoder.v} {1 {vlog -work work -vopt -stats=none {D:\Computer Orginization\CO Lab Reports\Final Project\Decoder.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Decoder
+
+Top level modules:
+	Decoder
+
+} {} {}} {D:/Computer Orginization/CO Lab Reports/Final Project/Datapath.v} {1 {vlog -work work -vopt -stats=none {D:\Computer Orginization\CO Lab Reports\Final Project\Datapath.v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Datapath
+
+Top level modules:
+	Datapath
+
+} {} {}} {C:/modeltech64_10.5/examples/Program Counter(PC).v} {1 {vlog -work work -vopt -stats=none {C:\modeltech64_10.5\examples\Program Counter(PC).v}
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module counter
+
+Top level modules:
+	counter
+
+} {} {}}

@@ -1,0 +1,86 @@
+module Datapath(clk,op, rs,rt, rd,func,shamt, const,adds, PC,result);
+input clk;
+input [5:0]  const;
+input [2:0] op,rs, rt, rd, func,shamt;
+input [7:0]  adds;
+inout [7:0]  PC;
+inout reg [15:0] result;
+reg [15:0] REG1, REG2, REG3, extconst;
+reg [7:0] address, REG5;
+
+reg[15:0] Regfile[0:7];
+integer i;
+
+initial begin 
+   for(i=0;i<8; i=i+1)
+     Regfile[i]<= 16'd4;
+   end
+
+
+always @ (const) begin 
+ extconst = { {const[5]} , const };
+end 
+
+always @ (negedge clk) begin 
+  if(op==0) begin 
+    REG1= Regfile[rd];
+    REG2= Regfile[rs];
+    REG3= Regfile[rt];
+  end
+
+else if ((op==1)|(op==2))
+   begin 
+      REG1= Regfile[rd];
+      REG2= Regfile[rs];
+      REG3= shamt;
+    end
+
+else if ((op>2)&(op<5))  
+    begin 
+         REG1= Regfile[rd];
+         REG2= Regfile[rs];
+         REG3= Regfile[rt];
+    end
+
+else if (op==6)
+    begin 
+         REG1= Regfile[rd];
+         REG2= extconst;
+    end
+
+else if ((op==5)|(op==7)|(op==8))
+     begin 
+         REG1= Regfile[rd]; 
+         REG2= Regfile[rs];
+         REG3= extconst;
+     end
+
+else if ((op==6)) 
+     begin 
+          REG1 = Regfile[rd];
+          REG2 = extconst;
+     end
+
+else if (op==9)
+     begin 
+         REG1= 0;
+         REG2= 0;
+         REG3= 0;
+     end
+end 
+   ALU A1(clk, op, REG1, REG2, REG3,func, adds, PC, result);
+
+always @ (result) 
+  begin
+     REG1= result;
+     Regfile[rd] =REG1;
+  end
+
+endmodule 
+  
+
+
+ 
+      
+       
+
